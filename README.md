@@ -5,10 +5,10 @@ A simple TaskManager (TODO) built with .NET Core 8.0 using PostgreSQL for data s
 ## Quick Setup
 
 ### 1. Check PostgreSQL
+ Verify PostgreSQL is running
+
 ```bash
-# Verify PostgreSQL is running
 psql --version
-# If not running, start PostgreSQL service
 ```
 
 ### 2. Create Database
