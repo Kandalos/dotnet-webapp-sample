@@ -1,0 +1,26 @@
+@page
+@model TaskManager.Models.TaskItem
+@{
+    ViewData["Title"] = "Test DB Connection";
+}
+
+<h1>Test Database Connection</h1>
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    
+    <div class="mb-3">
+        <label for="Title" class="form-label">Test Task Title</label>
+        <input type="text" class="form-control" id="Title" name="Title" value="Test Task @DateTime.Now" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Test Add to Database</button>
+    <a href="/" class="btn btn-secondary">Back to Main</a>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info mt-3">
+        @ViewBag.Message
+    </div>
+}

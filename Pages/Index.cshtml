@@ -1,0 +1,90 @@
+﻿@model List<TaskManager.Models.TaskItem>
+
+@{
+    ViewData["Title"] = "Simple Task Manager";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">📝 Simple Task Manager</h1>
+    
+    <!-- Form to add new task -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h4>Add New Task</h4>
+    </div>
+    <div class="card-body">
+        <!-- Add validation summary -->
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        
+        <form method="post" asp-controller="Home" asp-action="Create">
+			@Html.AntiForgeryToken()
+            <div class="mb-3">
+                <label asp-for="@Model.FirstOrDefault().Title" class="form-label"></label>
+                <input asp-for="@Model.FirstOrDefault().Title" class="form-control" 
+                       placeholder="Enter task title" />
+                <span asp-validation-for="@Model.FirstOrDefault().Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.FirstOrDefault().Description" class="form-label"></label>
+                <textarea asp-for="@Model.FirstOrDefault().Description" class="form-control" 
+                          rows="2" placeholder="Enter task description"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Task</button>
+        </form>
+    </div>
+</div>
+
+    <!-- Display existing tasks -->
+    <div class="card">
+        <div class="card-header">
+            <h4>Your Tasks</h4>
+        </div>
+        <div class="card-body">
+            @if (Model.Any())
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Created</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var task in Model)
+                        {
+                            <tr>
+                                <td>@task.Title</td>
+                                <td>@task.Description</td>
+                                <td>@task.CreatedAt.ToString("MMM dd, yyyy")</td>
+                                <td>
+                                    @if (task.IsCompleted)
+                                    {
+                                        <span class="badge bg-success">Completed</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning">Pending</span>
+                                    }
+                                </td>
+                                <td>
+                                    <a asp-action="Delete" asp-route-id="@task.Id" 
+                                       class="btn btn-danger btn-sm" 
+                                       onclick="return confirm('Are you sure?')">
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p class="text-muted">No tasks yet. Add your first task above!</p>
+            }
+        </div>
+    </div>
+</div>
