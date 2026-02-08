@@ -31,20 +31,17 @@ Edit `appsettings.json`:
 
 ### 4. Build & Run
 
-# Restore packages
+ Restore packages
 ```
 dotnet restore
 ```
-# Apply database migrations
+ Apply database migrations
 ```
 dotnet ef database update
 ```
-
-# Run the app
+ Run the app
 ```
 dotnet run
-
-# Access at: http://localhost:5021
 ```
 
 ## Features
