@@ -1,4 +1,3 @@
-# .NET Observability/Testing Web App Sample
 
 A simple TaskManager (TODO) built with .NET Core 8.0 using PostgreSQL for data storage.
 
@@ -51,4 +50,3 @@ dotnet run
 - ASP.NET Core 8.0
 - PostgreSQL + Entity Framework Core
 - Bootstrap 5
-```
